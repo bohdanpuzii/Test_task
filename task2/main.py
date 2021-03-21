@@ -1,18 +1,23 @@
-def even_to_value(value_to_check, even):
-    return True if value_to_check % even == 0 else False
+def get_dictionary_by_value(value):
+    result = {'$$@@': value % 3 == 0 and value % 5 == 0,
+              '$$': value % 3 == 0,
+              '@@': value % 5 == 0}
+    return result
 
 
-def replace_even_3_5(start, end):
-    for i in range(start, end + 1):
-        if even_to_value(i, 3) and even_to_value(i, 5):
-            print('$$@@')
-        elif even_to_value(i, 3):
-            print('$$')
-        elif even_to_value(i, 5):
-            print('@@')
-        else:
-            print(i)
+def get_first_true_key(dictionary):
+    keys = dictionary.keys()
+    for key in keys:
+        if dictionary[key]:
+            return key
+
+
+def print_results_in_range(start, end):
+    for value in range(start, end + 1):
+        dictionary = get_dictionary_by_value(value)
+        first_key = get_first_true_key(dictionary)
+        print(first_key or value)
 
 
 if __name__ == '__main__':
-    replace_even_3_5(11, 79)
+    print_results_in_range(11, 79)

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex mh-100px" xmlns="http://www.w3.org/1999/html">
+    <h4>Edit post</h4>
+</div>
+<div id="{{post.id}}" class="card text-white bg-secondary mb-3 " style="max-width: 50rem;">
+    <div class="card-header">
+        <h3>{{post.author.username}}</h3>
+    </div>
+    <img class="card-img-top" src="{{post.photo.url}}" alt="Card image cap" style="width:200px;height:300px;">
+    <div class="card-body">
+        <div class="d-flex">
+            <form action="" method="post">{% csrf_token %}
+                <label><input type="text" id="title" name="title" value="{{post.title}}">Title</label><br>
+                <label><input type="text" id="description" name="description" value="{{post.description}}">Description</label><br>
+                <input class="btn btn-primary" type="submit" value="Edit">
+            </form>
+        </div>
+        <p class="card-text">{{post.date}}</p>
+    </div>
+</div>
+
+{% endblock %}
