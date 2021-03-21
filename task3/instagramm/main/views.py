@@ -50,7 +50,6 @@ class SignIn(View):
         form = SignInForm(request.POST)
         if form.is_valid():
             user_data = take_data_from_form(form)
-            print(user_data['user_name'])
             user = authenticate(username=user_data['user_name'], password=user_data['user_password'])
             if user is not None:
                 login(request, user)

@@ -1,11 +1,5 @@
 from django.contrib import admin
 from .models import Post, Comment
-
-# Register your models here.
-# admin.site.register(Post)
-# admin.site.register(Comment)
-
-
 from django.urls import path, reverse
 from django.shortcuts import redirect
 from django.utils.html import format_html
@@ -29,7 +23,6 @@ class PostAdmin(admin.ModelAdmin):
         urls = super().get_urls()
         shard_urls = [path('delete_comments/<int:post_id>', self.admin_site.admin_view(self.delete_comments),
                            name="delete_comments"), ]
-        # Список отображаемых столбцов
         return shard_urls + urls
 
     @staticmethod
